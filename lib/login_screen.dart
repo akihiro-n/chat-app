@@ -1,3 +1,4 @@
+import 'package:chat_app/create_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -6,11 +7,11 @@ class LoginScreen extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return LoginScreenState();
+    return _LoginScreenState();
   }
 }
 
-class LoginScreenState extends ConsumerState<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   void initState() {
     // TODO: implement initState
@@ -53,7 +54,14 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
               ),
               const Spacer(flex: 1),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CreateProfileScreen(),
+                    ),
+                  );
+                },
                 child: const Text(
                   "ログインしないで始める",
                   style: TextStyle(
