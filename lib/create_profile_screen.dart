@@ -14,6 +14,7 @@ class CreateProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +31,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
-                        "プロフィールを作成しましょう",
+                        "簡単なプロフィールを作成しましょう",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 34,
@@ -119,81 +120,24 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                     const SizedBox(
                       height: 24,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: TextFormField(
-                        maxLines: 5,
-                        minLines: 2,
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.deepOrange,
-                              width: 2.0,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.deepOrange[100]!,
-                              width: 1.0,
-                            ),
-                          ),
-                          floatingLabelStyle: const TextStyle(fontSize: 16),
-                          labelText: 'メッセージ',
+                    const Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                          "※ユーザー名は必ず入力する必要があります。",
+                          style: TextStyle(fontSize: 12),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: TextFormField(
-                        maxLines: 5,
-                        minLines: 2,
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.deepOrange,
-                              width: 2.0,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.deepOrange[100]!,
-                              width: 1.0,
-                            ),
-                          ),
-                          floatingLabelStyle: const TextStyle(fontSize: 16),
-                          labelText: 'メッセージ',
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: TextFormField(
-                        maxLines: 5,
-                        minLines: 2,
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.deepOrange,
-                              width: 2.0,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.deepOrange[100]!,
-                              width: 1.0,
-                            ),
-                          ),
-                          floatingLabelStyle: const TextStyle(fontSize: 16),
-                          labelText: 'メッセージ',
+                    const Align(
+                      alignment: Alignment.topLeft,
+
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24),
+                        child: Text(
+                            "※プロフィール画像、ユーザー名、メッセージは後からでも自由に変更できます。",
+                          style: TextStyle(fontSize: 12),
                         ),
                       ),
                     ),
@@ -203,6 +147,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               ),
             ),
           ),
+
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
@@ -224,7 +169,9 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                           flex: 1,
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
                           child: const Text(
                             "Cancel",
                             style: TextStyle(
