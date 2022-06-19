@@ -1,7 +1,5 @@
+import 'package:chat_app/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CreateProfileScreen extends ConsumerStatefulWidget {
@@ -14,7 +12,6 @@ class CreateProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,9 +30,10 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                       child: Text(
                         "簡単なプロフィールを作成しましょう",
                         style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 34,
-                            fontWeight: FontWeight.w900),
+                          color: Colors.black,
+                          fontSize: 34,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -132,11 +130,10 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                     ),
                     const Align(
                       alignment: Alignment.topLeft,
-
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 24),
                         child: Text(
-                            "※プロフィール画像、ユーザー名、メッセージは後からでも自由に変更できます。",
+                          "※プロフィール画像、ユーザー名、メッセージは後からでも自由に変更できます。",
                           style: TextStyle(fontSize: 12),
                         ),
                       ),
@@ -147,7 +144,6 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               ),
             ),
           ),
-
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
@@ -181,7 +177,14 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomeScreen(),
+                              ),
+                            );
+                          },
                           child: const Text(
                             "OK",
                             style: TextStyle(
