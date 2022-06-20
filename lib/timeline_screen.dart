@@ -1,3 +1,4 @@
+import 'package:chat_app/post_comment_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,17 +13,16 @@ class TimelineScreen extends ConsumerStatefulWidget {
 }
 
 class _TimelineScreenState extends ConsumerState<TimelineScreen> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
+  final listView = ListView.builder(
+    itemCount: 30,
+    itemBuilder: (BuildContext context, int index) {
+      if (index == 0) {
+        return Column(
+          children: const [
+            SizedBox(
               height: 24,
             ),
-            const Align(
+            Align(
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24),
@@ -36,372 +36,20 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 32,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Card(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const ListTile(
-                      leading: Icon(Icons.person),
-                      title: Text("私の名前"),
-                      subtitle: Text(
-                        "こんにちは。ここに、長文のメッセージが表示される予定です。長文でも耐えられるレイアウトを心がけるようにしていきます。がんばりましょう。",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 70,
-                        ),
-                        Icon(
-                          Icons.favorite,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Icon(
-                          Icons.comment_rounded,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        Spacer(
-                          flex: 1,
-                        ),
-                        Text(
-                          "8秒前",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 32,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Card(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const ListTile(
-                      leading: Icon(Icons.person),
-                      title: Text("私の名前"),
-                      subtitle: Text(
-                        "こんにちは。ここに、長文のメッセージが表示される予定です。長文でも耐えられるレイアウトを心がけるようにしていきます。がんばりましょう。",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 70,
-                        ),
-                        Icon(
-                          Icons.favorite,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Icon(
-                          Icons.comment_rounded,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        Spacer(
-                          flex: 1,
-                        ),
-                        Text(
-                          "8秒前",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 32,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Card(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const ListTile(
-                      leading: Icon(Icons.person),
-                      title: Text("私の名前"),
-                      subtitle: Text(
-                        "こんにちは。ここに、長文のメッセージが表示される予定です。長文でも耐えられるレイアウトを心がけるようにしていきます。がんばりましょう。",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 70,
-                        ),
-                        Icon(
-                          Icons.favorite,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Icon(
-                          Icons.comment_rounded,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        Spacer(
-                          flex: 1,
-                        ),
-                        Text(
-                          "8秒前",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 32,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Card(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const ListTile(
-                      leading: Icon(Icons.person),
-                      title: Text("私の名前"),
-                      subtitle: Text(
-                        "こんにちは。ここに、長文のメッセージが表示される予定です。長文でも耐えられるレイアウトを心がけるようにしていきます。がんばりましょう。",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 70,
-                        ),
-                        Icon(
-                          Icons.favorite,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Icon(
-                          Icons.comment_rounded,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        Spacer(
-                          flex: 1,
-                        ),
-                        Text(
-                          "8秒前",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 32,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Card(
-                elevation: 1,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const ListTile(
-                      leading: Icon(Icons.person),
-                      title: Text("私の名前"),
-                      subtitle: Text(
-                        "こんにちは。ここに、長文のメッセージが表示される予定です。長文でも耐えられるレイアウトを心がけるようにしていきます。がんばりましょう。",
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 70,
-                        ),
-                        Icon(
-                          Icons.favorite,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 40,
-                        ),
-                        Icon(
-                          Icons.comment_rounded,
-                          size: 20,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          width: 2,
-                        ),
-                        Text(
-                          "0",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        Spacer(
-                          flex: 1,
-                        ),
-                        Text(
-                          "8秒前",
-                          style: TextStyle(fontSize: 12, color: Colors.grey),
-                        ),
-                        SizedBox(
-                          width: 32,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                  ],
-                ),
-              ),
-            )
           ],
-        ),
-      ),
-    );
+        );
+      } else {
+        return const PostCommentCell();
+      }
+    },
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(body: listView);
   }
 }

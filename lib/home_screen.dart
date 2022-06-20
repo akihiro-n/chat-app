@@ -1,3 +1,4 @@
+import 'package:chat_app/my_page_screen.dart';
 import 'package:chat_app/timeline_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,9 +14,9 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
-  static final List<Widget> _pages = [const TimelineScreen(), const Text("")];
+  static final List<Widget> _pages = [const TimelineScreen(), const MyPageScreen()];
 
-  final int _currentPagePosition = 0;
+  int _currentPagePosition = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       body: SafeArea(child: _pages[_currentPagePosition]),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: (position) {
+          setState((){
+            _currentPagePosition = position;
+          });
+        },
+        currentIndex: _currentPagePosition,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.view_timeline),
