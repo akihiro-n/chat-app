@@ -12,20 +12,19 @@ final loginViewModelProvider =
 );
 
 class LoginViewModel extends StateNotifier<LoginState> {
-  LoginViewModel({required this.repository}) : super(const LoginState());
+  LoginViewModel({required this.repository}) : super(const LoginState(event: LoginEvent.none()));
   final UserInformationRepository repository;
-  final StreamController<LoginEvent> _event = StreamController<LoginEvent>();
-
-  Stream<LoginEvent> get event => _event.stream;
 
   void signInAnonymously() async {
     final result = await repository.signInAnonymously();
     result.when(
         success: (user) {
-          _event.add(const LoginEvent.showCreateProfileScreen());
+          state = state.copyWith(event: const LoginEvent.showCreateProfileScreen());
+          state = state.copyWith(event: const LoginEvent.none());
         },
         error: (e) {
-          _event.add(const LoginEvent.showErrorMessage("ログインに失敗しました"));
+          state = state.copyWith(event: const LoginEvent.showErrorMessage("ログインに失敗しました"));
+          state = state.copyWith(event: const LoginEvent.none());
         }
     );
   }

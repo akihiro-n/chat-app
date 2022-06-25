@@ -22,8 +22,12 @@ class _$LoginEventTearOff {
     );
   }
 
-  RequiredCreateProfile showCreateProfileScreen() {
-    return const RequiredCreateProfile();
+  ShowCreateProfileScreen showCreateProfileScreen() {
+    return const ShowCreateProfileScreen();
+  }
+
+  None none() {
+    return const None();
   }
 }
 
@@ -36,26 +40,30 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showErrorMessage,
     required TResult Function() showCreateProfileScreen,
+    required TResult Function() none,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showErrorMessage,
     TResult Function()? showCreateProfileScreen,
+    TResult Function()? none,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ShowErrorMessage value) showErrorMessage,
-    required TResult Function(RequiredCreateProfile value)
+    required TResult Function(ShowCreateProfileScreen value)
         showCreateProfileScreen,
+    required TResult Function(None value) none,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowErrorMessage value)? showErrorMessage,
-    TResult Function(RequiredCreateProfile value)? showCreateProfileScreen,
+    TResult Function(ShowCreateProfileScreen value)? showCreateProfileScreen,
+    TResult Function(None value)? none,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,6 +152,7 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showErrorMessage,
     required TResult Function() showCreateProfileScreen,
+    required TResult Function() none,
   }) {
     return showErrorMessage(message);
   }
@@ -153,6 +162,7 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showErrorMessage,
     TResult Function()? showCreateProfileScreen,
+    TResult Function()? none,
     required TResult orElse(),
   }) {
     if (showErrorMessage != null) {
@@ -165,8 +175,9 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ShowErrorMessage value) showErrorMessage,
-    required TResult Function(RequiredCreateProfile value)
+    required TResult Function(ShowCreateProfileScreen value)
         showCreateProfileScreen,
+    required TResult Function(None value) none,
   }) {
     return showErrorMessage(this);
   }
@@ -175,7 +186,8 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowErrorMessage value)? showErrorMessage,
-    TResult Function(RequiredCreateProfile value)? showCreateProfileScreen,
+    TResult Function(ShowCreateProfileScreen value)? showCreateProfileScreen,
+    TResult Function(None value)? none,
     required TResult orElse(),
   }) {
     if (showErrorMessage != null) {
@@ -195,28 +207,28 @@ abstract class ShowErrorMessage implements LoginEvent {
 }
 
 /// @nodoc
-abstract class $RequiredCreateProfileCopyWith<$Res> {
-  factory $RequiredCreateProfileCopyWith(RequiredCreateProfile value,
-          $Res Function(RequiredCreateProfile) then) =
-      _$RequiredCreateProfileCopyWithImpl<$Res>;
+abstract class $ShowCreateProfileScreenCopyWith<$Res> {
+  factory $ShowCreateProfileScreenCopyWith(ShowCreateProfileScreen value,
+          $Res Function(ShowCreateProfileScreen) then) =
+      _$ShowCreateProfileScreenCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RequiredCreateProfileCopyWithImpl<$Res>
+class _$ShowCreateProfileScreenCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res>
-    implements $RequiredCreateProfileCopyWith<$Res> {
-  _$RequiredCreateProfileCopyWithImpl(
-      RequiredCreateProfile _value, $Res Function(RequiredCreateProfile) _then)
-      : super(_value, (v) => _then(v as RequiredCreateProfile));
+    implements $ShowCreateProfileScreenCopyWith<$Res> {
+  _$ShowCreateProfileScreenCopyWithImpl(ShowCreateProfileScreen _value,
+      $Res Function(ShowCreateProfileScreen) _then)
+      : super(_value, (v) => _then(v as ShowCreateProfileScreen));
 
   @override
-  RequiredCreateProfile get _value => super._value as RequiredCreateProfile;
+  ShowCreateProfileScreen get _value => super._value as ShowCreateProfileScreen;
 }
 
 /// @nodoc
 
-class _$RequiredCreateProfile implements RequiredCreateProfile {
-  const _$RequiredCreateProfile();
+class _$ShowCreateProfileScreen implements ShowCreateProfileScreen {
+  const _$ShowCreateProfileScreen();
 
   @override
   String toString() {
@@ -225,7 +237,7 @@ class _$RequiredCreateProfile implements RequiredCreateProfile {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is RequiredCreateProfile);
+    return identical(this, other) || (other is ShowCreateProfileScreen);
   }
 
   @override
@@ -236,6 +248,7 @@ class _$RequiredCreateProfile implements RequiredCreateProfile {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showErrorMessage,
     required TResult Function() showCreateProfileScreen,
+    required TResult Function() none,
   }) {
     return showCreateProfileScreen();
   }
@@ -245,6 +258,7 @@ class _$RequiredCreateProfile implements RequiredCreateProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showErrorMessage,
     TResult Function()? showCreateProfileScreen,
+    TResult Function()? none,
     required TResult orElse(),
   }) {
     if (showCreateProfileScreen != null) {
@@ -257,8 +271,9 @@ class _$RequiredCreateProfile implements RequiredCreateProfile {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ShowErrorMessage value) showErrorMessage,
-    required TResult Function(RequiredCreateProfile value)
+    required TResult Function(ShowCreateProfileScreen value)
         showCreateProfileScreen,
+    required TResult Function(None value) none,
   }) {
     return showCreateProfileScreen(this);
   }
@@ -267,7 +282,8 @@ class _$RequiredCreateProfile implements RequiredCreateProfile {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowErrorMessage value)? showErrorMessage,
-    TResult Function(RequiredCreateProfile value)? showCreateProfileScreen,
+    TResult Function(ShowCreateProfileScreen value)? showCreateProfileScreen,
+    TResult Function(None value)? none,
     required TResult orElse(),
   }) {
     if (showCreateProfileScreen != null) {
@@ -277,6 +293,94 @@ class _$RequiredCreateProfile implements RequiredCreateProfile {
   }
 }
 
-abstract class RequiredCreateProfile implements LoginEvent {
-  const factory RequiredCreateProfile() = _$RequiredCreateProfile;
+abstract class ShowCreateProfileScreen implements LoginEvent {
+  const factory ShowCreateProfileScreen() = _$ShowCreateProfileScreen;
+}
+
+/// @nodoc
+abstract class $NoneCopyWith<$Res> {
+  factory $NoneCopyWith(None value, $Res Function(None) then) =
+      _$NoneCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NoneCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements $NoneCopyWith<$Res> {
+  _$NoneCopyWithImpl(None _value, $Res Function(None) _then)
+      : super(_value, (v) => _then(v as None));
+
+  @override
+  None get _value => super._value as None;
+}
+
+/// @nodoc
+
+class _$None implements None {
+  const _$None();
+
+  @override
+  String toString() {
+    return 'LoginEvent.none()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is None);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) showErrorMessage,
+    required TResult Function() showCreateProfileScreen,
+    required TResult Function() none,
+  }) {
+    return none();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? showErrorMessage,
+    TResult Function()? showCreateProfileScreen,
+    TResult Function()? none,
+    required TResult orElse(),
+  }) {
+    if (none != null) {
+      return none();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ShowErrorMessage value) showErrorMessage,
+    required TResult Function(ShowCreateProfileScreen value)
+        showCreateProfileScreen,
+    required TResult Function(None value) none,
+  }) {
+    return none(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ShowErrorMessage value)? showErrorMessage,
+    TResult Function(ShowCreateProfileScreen value)? showCreateProfileScreen,
+    TResult Function(None value)? none,
+    required TResult orElse(),
+  }) {
+    if (none != null) {
+      return none(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class None implements LoginEvent {
+  const factory None() = _$None;
 }

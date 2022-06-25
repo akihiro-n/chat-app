@@ -12,22 +12,16 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CreateProfileState _$CreateProfileStateFromJson(Map<String, dynamic> json) {
-  return _CreateProfileState.fromJson(json);
-}
-
 /// @nodoc
 class _$CreateProfileStateTearOff {
   const _$CreateProfileStateTearOff();
 
-  _CreateProfileState call({required bool isLoading}) {
+  _CreateProfileState call(
+      {required bool isLoading, required CreateProfileEvent event}) {
     return _CreateProfileState(
       isLoading: isLoading,
+      event: event,
     );
-  }
-
-  CreateProfileState fromJson(Map<String, Object> json) {
-    return CreateProfileState.fromJson(json);
   }
 }
 
@@ -37,8 +31,8 @@ const $CreateProfileState = _$CreateProfileStateTearOff();
 /// @nodoc
 mixin _$CreateProfileState {
   bool get isLoading => throw _privateConstructorUsedError;
+  CreateProfileEvent get event => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CreateProfileStateCopyWith<CreateProfileState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -49,7 +43,9 @@ abstract class $CreateProfileStateCopyWith<$Res> {
   factory $CreateProfileStateCopyWith(
           CreateProfileState value, $Res Function(CreateProfileState) then) =
       _$CreateProfileStateCopyWithImpl<$Res>;
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, CreateProfileEvent event});
+
+  $CreateProfileEventCopyWith<$Res> get event;
 }
 
 /// @nodoc
@@ -64,13 +60,25 @@ class _$CreateProfileStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
+    Object? event = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      event: event == freezed
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
+              as CreateProfileEvent,
     ));
+  }
+
+  @override
+  $CreateProfileEventCopyWith<$Res> get event {
+    return $CreateProfileEventCopyWith<$Res>(_value.event, (value) {
+      return _then(_value.copyWith(event: value));
+    });
   }
 }
 
@@ -81,7 +89,10 @@ abstract class _$CreateProfileStateCopyWith<$Res>
           _CreateProfileState value, $Res Function(_CreateProfileState) then) =
       __$CreateProfileStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoading});
+  $Res call({bool isLoading, CreateProfileEvent event});
+
+  @override
+  $CreateProfileEventCopyWith<$Res> get event;
 }
 
 /// @nodoc
@@ -98,30 +109,34 @@ class __$CreateProfileStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = freezed,
+    Object? event = freezed,
   }) {
     return _then(_CreateProfileState(
       isLoading: isLoading == freezed
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      event: event == freezed
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
+              as CreateProfileEvent,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_CreateProfileState implements _CreateProfileState {
-  const _$_CreateProfileState({required this.isLoading});
 
-  factory _$_CreateProfileState.fromJson(Map<String, dynamic> json) =>
-      _$_$_CreateProfileStateFromJson(json);
+class _$_CreateProfileState implements _CreateProfileState {
+  const _$_CreateProfileState({required this.isLoading, required this.event});
 
   @override
   final bool isLoading;
+  @override
+  final CreateProfileEvent event;
 
   @override
   String toString() {
-    return 'CreateProfileState(isLoading: $isLoading)';
+    return 'CreateProfileState(isLoading: $isLoading, event: $event)';
   }
 
   @override
@@ -130,33 +145,32 @@ class _$_CreateProfileState implements _CreateProfileState {
         (other is _CreateProfileState &&
             (identical(other.isLoading, isLoading) ||
                 const DeepCollectionEquality()
-                    .equals(other.isLoading, isLoading)));
+                    .equals(other.isLoading, isLoading)) &&
+            (identical(other.event, event) ||
+                const DeepCollectionEquality().equals(other.event, event)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isLoading);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(isLoading) ^
+      const DeepCollectionEquality().hash(event);
 
   @JsonKey(ignore: true)
   @override
   _$CreateProfileStateCopyWith<_CreateProfileState> get copyWith =>
       __$CreateProfileStateCopyWithImpl<_CreateProfileState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_CreateProfileStateToJson(this);
-  }
 }
 
 abstract class _CreateProfileState implements CreateProfileState {
-  const factory _CreateProfileState({required bool isLoading}) =
-      _$_CreateProfileState;
-
-  factory _CreateProfileState.fromJson(Map<String, dynamic> json) =
-      _$_CreateProfileState.fromJson;
+  const factory _CreateProfileState(
+      {required bool isLoading,
+      required CreateProfileEvent event}) = _$_CreateProfileState;
 
   @override
   bool get isLoading => throw _privateConstructorUsedError;
+  @override
+  CreateProfileEvent get event => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$CreateProfileStateCopyWith<_CreateProfileState> get copyWith =>

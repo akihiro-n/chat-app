@@ -1,5 +1,6 @@
 import 'package:chat_app/create_profile_screen.dart';
 import 'package:chat_app/view_model/login_view_model.dart';
+import 'package:chat_app/view_model/state/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,28 +14,6 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final viewModel = ref.watch(loginViewModelProvider.notifier);
-    viewModel.event.listen((event) {
-      // ignore: invalid_use_of_protected_member
-      event.when(
-        showErrorMessage: (message) => showErrorDialog(message),
-        showCreateProfileScreen: () => navigationCreateProfileScreen(),
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   void navigationCreateProfileScreen() {
     Navigator.push(
@@ -52,6 +31,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = ref.watch(loginViewModelProvider.notifier);
+    ref.listen<LoginState>(loginViewModelProvider, (previous, next) {
+      next.event.when(
+        showErrorMessage: (message) => showErrorDialog(message),
+        showCreateProfileScreen: () => navigationCreateProfileScreen(),
+        none: () {},
+      );
+    });
     return Scaffold(
       body: SafeArea(
         child: Center(

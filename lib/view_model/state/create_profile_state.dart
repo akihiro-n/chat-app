@@ -1,13 +1,12 @@
+import 'package:chat_app/view_model/event/create_profile_event.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'create_profile_state.freezed.dart';
-part 'create_profile_state.g.dart';
 
 @freezed
 class CreateProfileState with _$CreateProfileState {
   const factory CreateProfileState({
-    required bool isLoading
+    required bool isLoading,
+    required CreateProfileEvent event
   }) = _CreateProfileState;
-
-  factory CreateProfileState.fromJson(Map<String, Object?> json) => _$CreateProfileStateFromJson(json);
 }

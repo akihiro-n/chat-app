@@ -1,5 +1,6 @@
 import 'package:chat_app/home_screen.dart';
 import 'package:chat_app/view_model/create_profile_view_model.dart';
+import 'package:chat_app/view_model/state/create_profile_state.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -21,23 +22,6 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
     userNameEditingController.dispose();
     messageEditingController.dispose();
     super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final viewModel = ref.watch(createProfileViewModelProvider.notifier);
-    viewModel.event.listen((event) {
-      event.when(
-        showErrorMessage: (message) => showErrorDialog(message),
-        showHomeScreen: () => startHomeScreen(),
-      );
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   void startHomeScreen() {
@@ -62,9 +46,8 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
     );
   }
 
-  Widget progressBar() {
-    final state = ref.watch(createProfileViewModelProvider);
-    return state.isLoading
+  Widget progressBar(bool isLoading) {
+    return isLoading
         ? const Align(
             alignment: Alignment.center,
             child: CircularProgressIndicator(),
@@ -74,6 +57,16 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(createProfileViewModelProvider);
+    final viewModel = ref.watch(createProfileViewModelProvider.notifier);
+    ref.listen<CreateProfileState>(createProfileViewModelProvider,
+        (previous, next) {
+      next.event.when(
+        showErrorMessage: (message) => showErrorDialog(message),
+        showHomeScreen: () => startHomeScreen(),
+        none: () {},
+      );
+    });
     return Scaffold(
       body: Stack(
         children: [
@@ -240,13 +233,10 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            ref
-                                .read(createProfileViewModelProvider.notifier)
-                                .onClickOk(
-                                    userName:
-                                        userNameEditingController.value.text,
-                                    message:
-                                        messageEditingController.value.text);
+                            viewModel.onClickOk(
+                              userName: userNameEditingController.value.text,
+                              message: messageEditingController.value.text,
+                            );
                           },
                           child: const Text(
                             "OK",
@@ -269,7 +259,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               ),
             ),
           ),
-          progressBar()
+          progressBar(state.isLoading)
         ],
       ),
     );

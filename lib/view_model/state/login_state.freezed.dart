@@ -12,22 +12,14 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-LoginState _$LoginStateFromJson(Map<String, dynamic> json) {
-  return _LoginState.fromJson(json);
-}
-
 /// @nodoc
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
-  _LoginState call({String? errorMessage}) {
+  _LoginState call({required LoginEvent event}) {
     return _LoginState(
-      errorMessage: errorMessage,
+      event: event,
     );
-  }
-
-  LoginState fromJson(Map<String, Object> json) {
-    return LoginState.fromJson(json);
   }
 }
 
@@ -36,9 +28,8 @@ const $LoginState = _$LoginStateTearOff();
 
 /// @nodoc
 mixin _$LoginState {
-  String? get errorMessage => throw _privateConstructorUsedError;
+  LoginEvent get event => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -49,7 +40,9 @@ abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
-  $Res call({String? errorMessage});
+  $Res call({LoginEvent event});
+
+  $LoginEventCopyWith<$Res> get event;
 }
 
 /// @nodoc
@@ -62,14 +55,21 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? errorMessage = freezed,
+    Object? event = freezed,
   }) {
     return _then(_value.copyWith(
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      event: event == freezed
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
+              as LoginEvent,
     ));
+  }
+
+  @override
+  $LoginEventCopyWith<$Res> get event {
+    return $LoginEventCopyWith<$Res>(_value.event, (value) {
+      return _then(_value.copyWith(event: value));
+    });
   }
 }
 
@@ -79,7 +79,10 @@ abstract class _$LoginStateCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
           _LoginState value, $Res Function(_LoginState) then) =
       __$LoginStateCopyWithImpl<$Res>;
   @override
-  $Res call({String? errorMessage});
+  $Res call({LoginEvent event});
+
+  @override
+  $LoginEventCopyWith<$Res> get event;
 }
 
 /// @nodoc
@@ -94,65 +97,53 @@ class __$LoginStateCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? errorMessage = freezed,
+    Object? event = freezed,
   }) {
     return _then(_LoginState(
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
+      event: event == freezed
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
+              as LoginEvent,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_LoginState implements _LoginState {
-  const _$_LoginState({this.errorMessage});
 
-  factory _$_LoginState.fromJson(Map<String, dynamic> json) =>
-      _$_$_LoginStateFromJson(json);
+class _$_LoginState implements _LoginState {
+  const _$_LoginState({required this.event});
 
   @override
-  final String? errorMessage;
+  final LoginEvent event;
 
   @override
   String toString() {
-    return 'LoginState(errorMessage: $errorMessage)';
+    return 'LoginState(event: $event)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LoginState &&
-            (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+            (identical(other.event, event) ||
+                const DeepCollectionEquality().equals(other.event, event)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(event);
 
   @JsonKey(ignore: true)
   @override
   _$LoginStateCopyWith<_LoginState> get copyWith =>
       __$LoginStateCopyWithImpl<_LoginState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_LoginStateToJson(this);
-  }
 }
 
 abstract class _LoginState implements LoginState {
-  const factory _LoginState({String? errorMessage}) = _$_LoginState;
-
-  factory _LoginState.fromJson(Map<String, dynamic> json) =
-      _$_LoginState.fromJson;
+  const factory _LoginState({required LoginEvent event}) = _$_LoginState;
 
   @override
-  String? get errorMessage => throw _privateConstructorUsedError;
+  LoginEvent get event => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LoginStateCopyWith<_LoginState> get copyWith =>

@@ -25,6 +25,10 @@ class _$CreateProfileEventTearOff {
   ShowHomeScreen showHomeScreen() {
     return const ShowHomeScreen();
   }
+
+  None none() {
+    return const None();
+  }
 }
 
 /// @nodoc
@@ -36,12 +40,14 @@ mixin _$CreateProfileEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showErrorMessage,
     required TResult Function() showHomeScreen,
+    required TResult Function() none,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showErrorMessage,
     TResult Function()? showHomeScreen,
+    TResult Function()? none,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,12 +55,14 @@ mixin _$CreateProfileEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(ShowErrorMessage value) showErrorMessage,
     required TResult Function(ShowHomeScreen value) showHomeScreen,
+    required TResult Function(None value) none,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowErrorMessage value)? showErrorMessage,
     TResult Function(ShowHomeScreen value)? showHomeScreen,
+    TResult Function(None value)? none,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -144,6 +152,7 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showErrorMessage,
     required TResult Function() showHomeScreen,
+    required TResult Function() none,
   }) {
     return showErrorMessage(message);
   }
@@ -153,6 +162,7 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showErrorMessage,
     TResult Function()? showHomeScreen,
+    TResult Function()? none,
     required TResult orElse(),
   }) {
     if (showErrorMessage != null) {
@@ -166,6 +176,7 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   TResult map<TResult extends Object?>({
     required TResult Function(ShowErrorMessage value) showErrorMessage,
     required TResult Function(ShowHomeScreen value) showHomeScreen,
+    required TResult Function(None value) none,
   }) {
     return showErrorMessage(this);
   }
@@ -175,6 +186,7 @@ class _$ShowErrorMessage implements ShowErrorMessage {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowErrorMessage value)? showErrorMessage,
     TResult Function(ShowHomeScreen value)? showHomeScreen,
+    TResult Function(None value)? none,
     required TResult orElse(),
   }) {
     if (showErrorMessage != null) {
@@ -235,6 +247,7 @@ class _$ShowHomeScreen implements ShowHomeScreen {
   TResult when<TResult extends Object?>({
     required TResult Function(String message) showErrorMessage,
     required TResult Function() showHomeScreen,
+    required TResult Function() none,
   }) {
     return showHomeScreen();
   }
@@ -244,6 +257,7 @@ class _$ShowHomeScreen implements ShowHomeScreen {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String message)? showErrorMessage,
     TResult Function()? showHomeScreen,
+    TResult Function()? none,
     required TResult orElse(),
   }) {
     if (showHomeScreen != null) {
@@ -257,6 +271,7 @@ class _$ShowHomeScreen implements ShowHomeScreen {
   TResult map<TResult extends Object?>({
     required TResult Function(ShowErrorMessage value) showErrorMessage,
     required TResult Function(ShowHomeScreen value) showHomeScreen,
+    required TResult Function(None value) none,
   }) {
     return showHomeScreen(this);
   }
@@ -266,6 +281,7 @@ class _$ShowHomeScreen implements ShowHomeScreen {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ShowErrorMessage value)? showErrorMessage,
     TResult Function(ShowHomeScreen value)? showHomeScreen,
+    TResult Function(None value)? none,
     required TResult orElse(),
   }) {
     if (showHomeScreen != null) {
@@ -277,4 +293,91 @@ class _$ShowHomeScreen implements ShowHomeScreen {
 
 abstract class ShowHomeScreen implements CreateProfileEvent {
   const factory ShowHomeScreen() = _$ShowHomeScreen;
+}
+
+/// @nodoc
+abstract class $NoneCopyWith<$Res> {
+  factory $NoneCopyWith(None value, $Res Function(None) then) =
+      _$NoneCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$NoneCopyWithImpl<$Res> extends _$CreateProfileEventCopyWithImpl<$Res>
+    implements $NoneCopyWith<$Res> {
+  _$NoneCopyWithImpl(None _value, $Res Function(None) _then)
+      : super(_value, (v) => _then(v as None));
+
+  @override
+  None get _value => super._value as None;
+}
+
+/// @nodoc
+
+class _$None implements None {
+  const _$None();
+
+  @override
+  String toString() {
+    return 'CreateProfileEvent.none()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is None);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) showErrorMessage,
+    required TResult Function() showHomeScreen,
+    required TResult Function() none,
+  }) {
+    return none();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? showErrorMessage,
+    TResult Function()? showHomeScreen,
+    TResult Function()? none,
+    required TResult orElse(),
+  }) {
+    if (none != null) {
+      return none();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ShowErrorMessage value) showErrorMessage,
+    required TResult Function(ShowHomeScreen value) showHomeScreen,
+    required TResult Function(None value) none,
+  }) {
+    return none(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ShowErrorMessage value)? showErrorMessage,
+    TResult Function(ShowHomeScreen value)? showHomeScreen,
+    TResult Function(None value)? none,
+    required TResult orElse(),
+  }) {
+    if (none != null) {
+      return none(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class None implements CreateProfileEvent {
+  const factory None() = _$None;
 }
