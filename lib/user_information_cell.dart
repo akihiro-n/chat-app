@@ -54,9 +54,9 @@ class _UserInformationCellState extends ConsumerState<UserInformationCell> {
                   const Expanded(
                     flex: 10,
                     child: Text(
+                      "私の名前＠プログラミング",
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
-                      "私の名前@プログラミング",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
                     ),
