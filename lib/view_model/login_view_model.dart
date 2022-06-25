@@ -6,7 +6,7 @@ import 'package:chat_app/view_model/state/login_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final loginViewModelProvider =
-    StateNotifierProvider<LoginViewModel, LoginState>(
+    StateNotifierProvider.autoDispose<LoginViewModel, LoginState>(
   (ref) =>
       LoginViewModel(repository: ref.read(userInformationRepositoryProvider)),
 );

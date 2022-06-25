@@ -15,15 +15,25 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   void initState() {
-    final viewModel = ref.read(loginViewModelProvider.notifier);
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final viewModel = ref.watch(loginViewModelProvider.notifier);
     viewModel.event.listen((event) {
       // ignore: invalid_use_of_protected_member
       event.when(
-          showErrorMessage: (message) => showErrorDialog(message),
-          showCreateProfileScreen: () => navigationCreateProfileScreen(),
+        showErrorMessage: (message) => showErrorDialog(message),
+        showCreateProfileScreen: () => navigationCreateProfileScreen(),
       );
     });
-    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   void navigationCreateProfileScreen() {
@@ -41,6 +51,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = ref.watch(loginViewModelProvider.notifier);
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -76,7 +87,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               const Spacer(flex: 1),
               TextButton(
                 onPressed: () {
-                  ref.read(loginViewModelProvider.notifier).signInAnonymously();
+                  viewModel.signInAnonymously();
                 },
                 child: const Text(
                   "ログインしないで始める",

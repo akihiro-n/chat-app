@@ -1,4 +1,5 @@
 import 'package:chat_app/home_screen.dart';
+import 'package:chat_app/view_model/create_profile_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,6 +13,65 @@ class CreateProfileScreen extends ConsumerStatefulWidget {
 }
 
 class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
+  final userNameEditingController = TextEditingController(text: "");
+  final messageEditingController = TextEditingController(text: "");
+
+  @override
+  void dispose() {
+    userNameEditingController.dispose();
+    messageEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final viewModel = ref.watch(createProfileViewModelProvider.notifier);
+    viewModel.event.listen((event) {
+      event.when(
+        showErrorMessage: (message) => showErrorDialog(message),
+        showHomeScreen: () => startHomeScreen(),
+      );
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void startHomeScreen() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("プロフィールを更新しました"),
+      ),
+    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HomeScreen(),
+      ),
+    );
+  }
+
+  void showErrorDialog(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  Widget progressBar() {
+    final state = ref.watch(createProfileViewModelProvider);
+    return state.isLoading
+        ? const Align(
+            alignment: Alignment.center,
+            child: CircularProgressIndicator(),
+          )
+        : Container();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +130,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: TextFormField(
+                        controller: userNameEditingController,
                         decoration: InputDecoration(
                           focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(
@@ -94,6 +155,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: TextFormField(
+                        controller: messageEditingController,
                         maxLines: 5,
                         minLines: 2,
                         keyboardType: TextInputType.multiline,
@@ -178,12 +240,13 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const HomeScreen(),
-                              ),
-                            );
+                            ref
+                                .read(createProfileViewModelProvider.notifier)
+                                .onClickOk(
+                                    userName:
+                                        userNameEditingController.value.text,
+                                    message:
+                                        messageEditingController.value.text);
                           },
                           child: const Text(
                             "OK",
@@ -205,7 +268,8 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
                 ),
               ),
             ),
-          )
+          ),
+          progressBar()
         ],
       ),
     );
