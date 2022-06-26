@@ -1,3 +1,4 @@
+import 'package:chat_app/create_comment_screen.dart';
 import 'package:chat_app/post_comment_cell.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,10 +21,30 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
     },
   );
 
+  void startCreateCommentScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateCommentScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+        floatingActionButton: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                startCreateCommentScreen();
+              },
+              child: const Icon(Icons.add_comment),
+            )
+          ],
+        ),
         appBar: AppBar(
           elevation: 1,
           backgroundColor: Colors.white,
