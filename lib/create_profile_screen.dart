@@ -1,4 +1,5 @@
 import 'package:chat_app/home_screen.dart';
+import 'package:chat_app/progress_bar_widget.dart';
 import 'package:chat_app/view_model/create_profile_view_model.dart';
 import 'package:chat_app/view_model/state/create_profile_state.dart';
 import 'package:flutter/material.dart';
@@ -44,15 +45,6 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
         content: Text(message),
       ),
     );
-  }
-
-  Widget progressBar(bool isLoading) {
-    return isLoading
-        ? const Align(
-            alignment: Alignment.center,
-            child: CircularProgressIndicator(),
-          )
-        : Container();
   }
 
   @override
@@ -259,7 +251,7 @@ class _CreateProfileScreenState extends ConsumerState<CreateProfileScreen> {
               ),
             ),
           ),
-          progressBar(state.isLoading)
+          ProgressBarWidget(isLoading: state.isLoading)
         ],
       ),
     );
