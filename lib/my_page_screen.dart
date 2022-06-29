@@ -49,12 +49,12 @@ class _MyPageScreenState extends ConsumerState<MyPageScreen> {
               ListView.builder(
                   itemCount: 30,
                   itemBuilder: (BuildContext context, int position) {
-                    return const PostCommentCell();
+                    return const PostCommentCell(message: "メッセージを表示する",);
                   }),
               ListView.builder(
                   itemCount: 30,
                   itemBuilder: (BuildContext context, int position) {
-                    return const PostCommentCell();
+                    return const PostCommentCell(message: "メッセージを表示する",);
                   }),
             ],
           ),

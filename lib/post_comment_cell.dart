@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PostCommentCell extends ConsumerStatefulWidget {
-  const PostCommentCell({Key? key}) : super(key: key);
+  const PostCommentCell({Key? key, required this.message}) : super(key: key);
+  final String message;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _PostCommentCellState();
+    return _PostCommentCellState(message: message);
   }
 }
 
 class _PostCommentCellState extends ConsumerState<PostCommentCell> {
+  _PostCommentCellState({required this.message});
+  final String message;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,11 +25,11 @@ class _PostCommentCellState extends ConsumerState<PostCommentCell> {
               const SizedBox(
                 height: 12,
               ),
-              const ListTile(
-                leading: Icon(Icons.person),
-                title: Text("私の名前"),
+              ListTile(
+                leading: const Icon(Icons.person),
+                title: const Text("私の名前"),
                 subtitle: Text(
-                  "こんにちは。ここに、長文のメッセージが表示される予定です。長文でも耐えられるレイアウトを心がけるようにしていきます。がんばりましょう。",
+                  message,
                 ),
               ),
               const SizedBox(

@@ -1,5 +1,6 @@
 import 'package:chat_app/create_comment_screen.dart';
 import 'package:chat_app/post_comment_cell.dart';
+import 'package:chat_app/view_model/time_line_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -14,12 +15,6 @@ class TimelineScreen extends ConsumerStatefulWidget {
 }
 
 class _TimelineScreenState extends ConsumerState<TimelineScreen> {
-  final listView = ListView.builder(
-    itemCount: 30,
-    itemBuilder: (BuildContext context, int index) {
-      return const PostCommentCell();
-    },
-  );
 
   void startCreateCommentScreen() {
     Navigator.push(
@@ -32,7 +27,7 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final state = ref.watch(timeLineViewModelProvider);
     return Scaffold(
         floatingActionButton: Column(
           mainAxisSize: MainAxisSize.min,
@@ -58,6 +53,11 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        body: listView);
+        body: ListView.builder(
+          itemCount: state.posts.length,
+          itemBuilder: (BuildContext context, int index) {
+            return PostCommentCell(message: state.posts[index].message,);
+          },
+        ),);
   }
 }

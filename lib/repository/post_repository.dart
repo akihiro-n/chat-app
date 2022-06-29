@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:chat_app/repository/entity/post_document.dart';
 import 'package:chat_app/repository/result/create_post_result.dart';
+import 'package:chat_app/repository/result/get_posts_result.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -30,5 +33,25 @@ class PostRepository {
     } on Exception catch (e) {
       return CreatePostResult.error(e);
     }
+  }
+
+  Stream<GetPostsResult> getPosts() {
+    return firebaseFireStore
+        .collection("posts")
+        .limit(10)
+        .snapshots()
+        .transform<GetPostsResult>(
+          StreamTransformer.fromHandlers(
+            handleData: (snapshots, sink) {
+              final posts = snapshots.docs.map(
+                (doc) => PostDocument.fromJson(doc.data()),
+              );
+              sink.add(GetPostsResult.success(posts.toList()));
+            },
+            handleError: (error, stacktrace, sink) {
+              sink.add(GetPostsResult.error((error as Exception)));
+            },
+          ),
+        );
   }
 }
