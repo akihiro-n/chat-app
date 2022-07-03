@@ -18,7 +18,7 @@ class _$TimeLineStateTearOff {
 
   _TimeLineState call(
       {required bool isLoading,
-      required List<PostDocument> posts,
+      required List<PostDocumentResponse> posts,
       required TimeLineEvent event}) {
     return _TimeLineState(
       isLoading: isLoading,
@@ -34,7 +34,7 @@ const $TimeLineState = _$TimeLineStateTearOff();
 /// @nodoc
 mixin _$TimeLineState {
   bool get isLoading => throw _privateConstructorUsedError;
-  List<PostDocument> get posts => throw _privateConstructorUsedError;
+  List<PostDocumentResponse> get posts => throw _privateConstructorUsedError;
   TimeLineEvent get event => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -47,7 +47,8 @@ abstract class $TimeLineStateCopyWith<$Res> {
   factory $TimeLineStateCopyWith(
           TimeLineState value, $Res Function(TimeLineState) then) =
       _$TimeLineStateCopyWithImpl<$Res>;
-  $Res call({bool isLoading, List<PostDocument> posts, TimeLineEvent event});
+  $Res call(
+      {bool isLoading, List<PostDocumentResponse> posts, TimeLineEvent event});
 
   $TimeLineEventCopyWith<$Res> get event;
 }
@@ -75,7 +76,7 @@ class _$TimeLineStateCopyWithImpl<$Res>
       posts: posts == freezed
           ? _value.posts
           : posts // ignore: cast_nullable_to_non_nullable
-              as List<PostDocument>,
+              as List<PostDocumentResponse>,
       event: event == freezed
           ? _value.event
           : event // ignore: cast_nullable_to_non_nullable
@@ -98,7 +99,8 @@ abstract class _$TimeLineStateCopyWith<$Res>
           _TimeLineState value, $Res Function(_TimeLineState) then) =
       __$TimeLineStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isLoading, List<PostDocument> posts, TimeLineEvent event});
+  $Res call(
+      {bool isLoading, List<PostDocumentResponse> posts, TimeLineEvent event});
 
   @override
   $TimeLineEventCopyWith<$Res> get event;
@@ -129,7 +131,7 @@ class __$TimeLineStateCopyWithImpl<$Res>
       posts: posts == freezed
           ? _value.posts
           : posts // ignore: cast_nullable_to_non_nullable
-              as List<PostDocument>,
+              as List<PostDocumentResponse>,
       event: event == freezed
           ? _value.event
           : event // ignore: cast_nullable_to_non_nullable
@@ -147,7 +149,7 @@ class _$_TimeLineState implements _TimeLineState {
   @override
   final bool isLoading;
   @override
-  final List<PostDocument> posts;
+  final List<PostDocumentResponse> posts;
   @override
   final TimeLineEvent event;
 
@@ -185,13 +187,13 @@ class _$_TimeLineState implements _TimeLineState {
 abstract class _TimeLineState implements TimeLineState {
   const factory _TimeLineState(
       {required bool isLoading,
-      required List<PostDocument> posts,
+      required List<PostDocumentResponse> posts,
       required TimeLineEvent event}) = _$_TimeLineState;
 
   @override
   bool get isLoading => throw _privateConstructorUsedError;
   @override
-  List<PostDocument> get posts => throw _privateConstructorUsedError;
+  List<PostDocumentResponse> get posts => throw _privateConstructorUsedError;
   @override
   TimeLineEvent get event => throw _privateConstructorUsedError;
   @override

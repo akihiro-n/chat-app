@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$GetPostsResultTearOff {
   const _$GetPostsResultTearOff();
 
-  Success success(List<PostDocument> posts) {
+  Success success(List<PostDocumentResponse> posts) {
     return Success(
       posts,
     );
@@ -36,13 +36,13 @@ const $GetPostsResult = _$GetPostsResultTearOff();
 mixin _$GetPostsResult {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<PostDocument> posts) success,
+    required TResult Function(List<PostDocumentResponse> posts) success,
     required TResult Function(Exception error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<PostDocument> posts)? success,
+    TResult Function(List<PostDocumentResponse> posts)? success,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) =>
@@ -83,7 +83,7 @@ class _$GetPostsResultCopyWithImpl<$Res>
 abstract class $SuccessCopyWith<$Res> {
   factory $SuccessCopyWith(Success value, $Res Function(Success) then) =
       _$SuccessCopyWithImpl<$Res>;
-  $Res call({List<PostDocument> posts});
+  $Res call({List<PostDocumentResponse> posts});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class _$SuccessCopyWithImpl<$Res> extends _$GetPostsResultCopyWithImpl<$Res>
       posts == freezed
           ? _value.posts
           : posts // ignore: cast_nullable_to_non_nullable
-              as List<PostDocument>,
+              as List<PostDocumentResponse>,
     ));
   }
 }
@@ -114,7 +114,7 @@ class _$Success implements Success {
   const _$Success(this.posts);
 
   @override
-  final List<PostDocument> posts;
+  final List<PostDocumentResponse> posts;
 
   @override
   String toString() {
@@ -141,7 +141,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<PostDocument> posts) success,
+    required TResult Function(List<PostDocumentResponse> posts) success,
     required TResult Function(Exception error) error,
   }) {
     return success(posts);
@@ -150,7 +150,7 @@ class _$Success implements Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<PostDocument> posts)? success,
+    TResult Function(List<PostDocumentResponse> posts)? success,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {
@@ -184,9 +184,9 @@ class _$Success implements Success {
 }
 
 abstract class Success implements GetPostsResult {
-  const factory Success(List<PostDocument> posts) = _$Success;
+  const factory Success(List<PostDocumentResponse> posts) = _$Success;
 
-  List<PostDocument> get posts => throw _privateConstructorUsedError;
+  List<PostDocumentResponse> get posts => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SuccessCopyWith<Success> get copyWith => throw _privateConstructorUsedError;
 }
@@ -253,7 +253,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<PostDocument> posts) success,
+    required TResult Function(List<PostDocumentResponse> posts) success,
     required TResult Function(Exception error) error,
   }) {
     return error(this.error);
@@ -262,7 +262,7 @@ class _$Error implements Error {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<PostDocument> posts)? success,
+    TResult Function(List<PostDocumentResponse> posts)? success,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {

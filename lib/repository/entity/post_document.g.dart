@@ -9,26 +9,26 @@ part of 'post_document.dart';
 _$_PostDocument _$_$_PostDocumentFromJson(Map<String, dynamic> json) {
   return _$_PostDocument(
     createdAt: const TimestampToDateTimeJsonConverter()
-        .fromJson(json['createdAt'] as Timestamp),
+        .fromJson(json['created_at'] as Timestamp),
     updatedAt: const TimestampToDateTimeJsonConverter()
-        .fromJson(json['updatedAt'] as Timestamp),
-    likeCount: json['likeCount'] as int,
-    commentCount: json['commentCount'] as int,
+        .fromJson(json['updated_at'] as Timestamp),
+    likeCount: json['like_count'] as int,
+    commentCount: json['comment_count'] as int,
     message: json['message'] as String,
     userRef: const DocumentReferenceJsonConverter()
-        .fromJson(json['userRef'] as DocumentReference<Object?>),
+        .fromJson(json['user_ref'] as DocumentReference<Object?>),
   );
 }
 
 Map<String, dynamic> _$_$_PostDocumentToJson(_$_PostDocument instance) =>
     <String, dynamic>{
-      'createdAt':
+      'created_at':
           const TimestampToDateTimeJsonConverter().toJson(instance.createdAt),
-      'updatedAt':
+      'updated_at':
           const TimestampToDateTimeJsonConverter().toJson(instance.updatedAt),
-      'likeCount': instance.likeCount,
-      'commentCount': instance.commentCount,
+      'like_count': instance.likeCount,
+      'comment_count': instance.commentCount,
       'message': instance.message,
-      'userRef':
+      'user_ref':
           const DocumentReferenceJsonConverter().toJson(instance.userRef),
     };

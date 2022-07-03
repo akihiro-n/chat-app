@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:chat_app/repository/entity/post_document.dart';
+import 'package:chat_app/repository/entity/post_document_response.dart';
 import 'package:chat_app/repository/result/create_post_result.dart';
 import 'package:chat_app/repository/result/get_posts_result.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -35,23 +36,27 @@ class PostRepository {
     }
   }
 
-  Stream<GetPostsResult> getPosts() {
-    return firebaseFireStore
-        .collection("posts")
-        .limit(10)
-        .snapshots()
-        .transform<GetPostsResult>(
-          StreamTransformer.fromHandlers(
-            handleData: (snapshots, sink) {
-              final posts = snapshots.docs.map(
-                (doc) => PostDocument.fromJson(doc.data()),
-              );
-              sink.add(GetPostsResult.success(posts.toList()));
-            },
-            handleError: (error, stacktrace, sink) {
-              sink.add(GetPostsResult.error((error as Exception)));
-            },
-          ),
-        );
+  Future<GetPostsResult> getPosts(String? startAfterDocumentId) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> snapshots;
+
+      if (startAfterDocumentId != null) {
+        snapshots = await firebaseFireStore
+            .collection("posts")
+            .orderBy("created_at", descending: true)
+            .limit(10)
+            .get();
+      } else {
+        snapshots = await firebaseFireStore
+            .collection("posts")
+            .limit(10)
+            .get();
+      }
+
+      final posts = snapshots.docs.map((e) => PostDocumentResponse(documentId: e.id, data: PostDocument.fromJson(e.data())));
+      return GetPostsResult.success(posts.toList());
+    } on Exception catch(e) {
+      return GetPostsResult.error(e);
+    }
   }
 }

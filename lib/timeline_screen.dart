@@ -56,7 +56,7 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
         body: ListView.builder(
           itemCount: state.posts.length,
           itemBuilder: (BuildContext context, int index) {
-            return PostCommentCell(message: state.posts[index].message,);
+            return PostCommentCell(message: state.posts[index].data.message,);
           },
         ),);
   }

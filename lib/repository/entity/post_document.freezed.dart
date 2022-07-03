@@ -191,7 +191,8 @@ class __$PostDocumentCopyWithImpl<$Res> extends _$PostDocumentCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_PostDocument implements _PostDocument {
   const _$_PostDocument(
       {@TimestampToDateTimeJsonConverter() required this.createdAt,

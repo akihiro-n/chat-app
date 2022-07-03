@@ -8,6 +8,8 @@ part 'post_document.g.dart';
 
 @freezed
 class PostDocument with _$PostDocument {
+  // ignore: invalid_annotation_target
+  @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PostDocument({
     @TimestampToDateTimeJsonConverter() required DateTime createdAt,
     @TimestampToDateTimeJsonConverter() required DateTime updatedAt,
