@@ -16,6 +16,8 @@ class TimelineScreen extends ConsumerStatefulWidget {
 
 class _TimelineScreenState extends ConsumerState<TimelineScreen> {
 
+  late final ScrollController scrollController;
+
   void startCreateCommentScreen() {
     Navigator.push(
       context,
@@ -26,8 +28,26 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
   }
 
   @override
+  void initState() {
+    scrollController = ScrollController();
+    scrollController.addListener(() {
+      if (scrollController.offset == scrollController.position.maxScrollExtent) {
+        ref.read(timeLineViewModelProvider.notifier).getNextPosts();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final state = ref.watch(timeLineViewModelProvider);
+    final viewModel = ref.watch(timeLineViewModelProvider.notifier);
     return Scaffold(
         floatingActionButton: Column(
           mainAxisSize: MainAxisSize.min,
@@ -55,6 +75,7 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
         ),
         body: ListView.builder(
           itemCount: state.posts.length,
+          controller: scrollController,
           itemBuilder: (BuildContext context, int index) {
             return PostCommentCell(message: state.posts[index].data.message,);
           },

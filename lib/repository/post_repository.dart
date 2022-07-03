@@ -36,26 +36,29 @@ class PostRepository {
     }
   }
 
-  Future<GetPostsResult> getPosts(String? startAfterDocumentId) async {
+  Future<GetPostsResult> getPosts(DateTime? startAfter) async {
     try {
       QuerySnapshot<Map<String, dynamic>> snapshots;
 
-      if (startAfterDocumentId != null) {
+      if (startAfter != null) {
         snapshots = await firebaseFireStore
             .collection("posts")
             .orderBy("created_at", descending: true)
+            .startAfter([Timestamp.fromDate(startAfter)])
             .limit(10)
             .get();
       } else {
         snapshots = await firebaseFireStore
             .collection("posts")
+            .orderBy("created_at", descending: true)
             .limit(10)
             .get();
       }
 
-      final posts = snapshots.docs.map((e) => PostDocumentResponse(documentId: e.id, data: PostDocument.fromJson(e.data())));
+      final posts = snapshots.docs.map((e) => PostDocumentResponse(
+          documentId: e.id, data: PostDocument.fromJson(e.data())));
       return GetPostsResult.success(posts.toList());
-    } on Exception catch(e) {
+    } on Exception catch (e) {
       return GetPostsResult.error(e);
     }
   }

@@ -8,7 +8,7 @@ final timeLineViewModelProvider =
   (ref) {
     final viewModel =
         TimeLineViewModel(repository: ref.read(postRepositoryProvider));
-    viewModel.requestGetPosts();
+    viewModel.getNextPosts();
     return viewModel;
   },
 );
@@ -24,13 +24,16 @@ class TimeLineViewModel extends StateNotifier<TimeLineState> {
         );
   final PostRepository repository;
 
-  void requestGetPosts() async {
+  void getNextPosts() async {
+    if (state.isLoading) {
+      return;
+    }
     state = state.copyWith(isLoading: true);
-    final startAfter = state.posts.isEmpty ? null : state.posts.last.documentId;
+    final startAfter = state.posts.isEmpty ? null : state.posts.last.data.createdAt;
     final event = await repository.getPosts(startAfter);
     event.when(
         success: (posts) {
-          state = state.copyWith(posts: posts, isLoading: false);
+          state = state.copyWith(posts: (state.posts + posts).toSet().toList(), isLoading: false);
         },
         error: (e) {});
   }
