@@ -2,18 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PostCommentCell extends ConsumerStatefulWidget {
-  const PostCommentCell({Key? key, required this.message}) : super(key: key);
+  const PostCommentCell(
+      {Key? key,
+      required this.message,
+      required this.commentCount,
+      required this.likeCount})
+      : super(key: key);
   final String message;
+  final String commentCount;
+  final String likeCount;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _PostCommentCellState(message: message);
+    return _PostCommentCellState(
+      message: message,
+      commentCount: commentCount,
+      likeCount: likeCount,
+    );
   }
 }
 
 class _PostCommentCellState extends ConsumerState<PostCommentCell> {
-  _PostCommentCellState({required this.message});
+  _PostCommentCellState({
+    required this.message,
+    required this.commentCount,
+    required this.likeCount,
+  });
+
   final String message;
+  final String commentCount;
+  final String likeCount;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,45 +55,45 @@ class _PostCommentCellState extends ConsumerState<PostCommentCell> {
                 height: 12,
               ),
               Row(
-                children: const [
-                  SizedBox(
+                children: [
+                  const SizedBox(
                     width: 70,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.favorite,
                     size: 20,
                     color: Colors.grey,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 2,
                   ),
                   Text(
-                    "0",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                    likeCount,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 40,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.comment_rounded,
                     size: 20,
                     color: Colors.grey,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 2,
                   ),
                   Text(
-                    "0",
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                    commentCount,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
-                  Spacer(
+                  const Spacer(
                     flex: 1,
                   ),
-                  Text(
+                  const Text(
                     "8秒前",
                     style: TextStyle(fontSize: 12, color: Colors.grey),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 32,
                   ),
                 ],

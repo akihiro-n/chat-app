@@ -1,5 +1,6 @@
 import 'package:chat_app/repository/post_repository.dart';
 import 'package:chat_app/view_model/event/time_line_event.dart';
+import 'package:chat_app/view_model/state/post_comment_state.dart';
 import 'package:chat_app/view_model/state/time_line_state.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -29,11 +30,12 @@ class TimeLineViewModel extends StateNotifier<TimeLineState> {
       return;
     }
     state = state.copyWith(isLoading: true);
-    final startAfter = state.posts.isEmpty ? null : state.posts.last.data.createdAt;
+    final startAfter = state.posts.isEmpty ? null : state.posts.last.response.data.createdAt;
     final event = await repository.getPosts(startAfter);
     event.when(
         success: (posts) {
-          state = state.copyWith(posts: (state.posts + posts).toSet().toList(), isLoading: false);
+          final postStates = posts.map((e) => PostCommentState(response: e)).toList();
+          state = state.copyWith(posts: (state.posts + postStates).toSet().toList(), isLoading: false);
         },
         error: (e) {});
   }

@@ -15,7 +15,6 @@ class TimelineScreen extends ConsumerStatefulWidget {
 }
 
 class _TimelineScreenState extends ConsumerState<TimelineScreen> {
-
   late final ScrollController scrollController;
 
   void startCreateCommentScreen() {
@@ -31,7 +30,8 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
   void initState() {
     scrollController = ScrollController();
     scrollController.addListener(() {
-      if (scrollController.offset == scrollController.position.maxScrollExtent) {
+      if (scrollController.offset ==
+          scrollController.position.maxScrollExtent) {
         ref.read(timeLineViewModelProvider.notifier).getNextPosts();
       }
     });
@@ -49,36 +49,42 @@ class _TimelineScreenState extends ConsumerState<TimelineScreen> {
     final state = ref.watch(timeLineViewModelProvider);
     final viewModel = ref.watch(timeLineViewModelProvider.notifier);
     return Scaffold(
-        floatingActionButton: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FloatingActionButton(
-              onPressed: () {
-                startCreateCommentScreen();
-              },
-              child: const Icon(Icons.add_comment),
-            )
-          ],
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              startCreateCommentScreen();
+            },
+            child: const Icon(Icons.add_comment),
+          )
+        ],
+      ),
+      appBar: AppBar(
+        elevation: 1,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        leading: const Icon(
+          Icons.menu,
+          color: Colors.black,
         ),
-        appBar: AppBar(
-          elevation: 1,
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
-          leading: const Icon(
-            Icons.menu,
-            color: Colors.black,
-          ),
-          title: const Text(
-            "みんなの投稿",
-            style: TextStyle(color: Colors.black),
-          ),
+        title: const Text(
+          "みんなの投稿",
+          style: TextStyle(color: Colors.black),
         ),
-        body: ListView.builder(
-          itemCount: state.posts.length,
-          controller: scrollController,
-          itemBuilder: (BuildContext context, int index) {
-            return PostCommentCell(message: state.posts[index].data.message,);
-          },
-        ),);
+      ),
+      body: ListView.builder(
+        itemCount: state.posts.length,
+        controller: scrollController,
+        itemBuilder: (BuildContext context, int index) {
+          final post = state.posts[index];
+          return PostCommentCell(
+            message: post.message,
+            likeCount: post.likeCount,
+            commentCount: post.commentCount,
+          );
+        },
+      ),
+    );
   }
 }

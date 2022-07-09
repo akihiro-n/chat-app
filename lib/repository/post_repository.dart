@@ -13,6 +13,7 @@ final postRepositoryProvider = Provider((ref) => PostRepository());
 class PostRepository {
   final firebaseAuth = FirebaseAuth.instance;
   final firebaseFireStore = FirebaseFirestore.instance;
+  List<PostDocumentResponse> postResponses = [];
 
   Future<CreatePostResult> createPost({required String message}) async {
     try {
@@ -55,9 +56,15 @@ class PostRepository {
             .get();
       }
 
-      final posts = snapshots.docs.map((e) => PostDocumentResponse(
-          documentId: e.id, data: PostDocument.fromJson(e.data())));
-      return GetPostsResult.success(posts.toList());
+      postResponses = snapshots.docs
+          .map(
+            (e) => PostDocumentResponse(
+              documentId: e.id,
+              data: PostDocument.fromJson(e.data()),
+            ),
+          )
+          .toList();
+      return GetPostsResult.success(postResponses);
     } on Exception catch (e) {
       return GetPostsResult.error(e);
     }
