@@ -14,24 +14,12 @@ class PostCommentCell extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() {
-    return _PostCommentCellState(
-      message: message,
-      commentCount: commentCount,
-      likeCount: likeCount,
-    );
+    return _PostCommentCellState();
   }
 }
 
 class _PostCommentCellState extends ConsumerState<PostCommentCell> {
-  _PostCommentCellState({
-    required this.message,
-    required this.commentCount,
-    required this.likeCount,
-  });
-
-  final String message;
-  final String commentCount;
-  final String likeCount;
+  _PostCommentCellState();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +36,7 @@ class _PostCommentCellState extends ConsumerState<PostCommentCell> {
                 leading: const Icon(Icons.person),
                 title: const Text("私の名前"),
                 subtitle: Text(
-                  message,
+                  widget.message,
                 ),
               ),
               const SizedBox(
@@ -68,7 +56,7 @@ class _PostCommentCellState extends ConsumerState<PostCommentCell> {
                     width: 2,
                   ),
                   Text(
-                    likeCount,
+                    widget.likeCount,
                     style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   const SizedBox(
@@ -83,7 +71,7 @@ class _PostCommentCellState extends ConsumerState<PostCommentCell> {
                     width: 2,
                   ),
                   Text(
-                    commentCount,
+                    widget.commentCount,
                     style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                   const Spacer(

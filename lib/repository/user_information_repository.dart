@@ -1,4 +1,4 @@
-import 'package:chat_app/repository/entity/profile.dart';
+import 'package:chat_app/repository/entity/user_document.dart';
 import 'package:chat_app/repository/result/set_profile_result.dart';
 import 'package:chat_app/repository/result/sign_in_anonymously_result.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,13 +27,18 @@ class UserInformationRepository {
   }) async {
     try {
       final uid = firebaseAuth.currentUser!.uid;
-      await firebaseFireStore.collection("users").doc(uid).set({
-        "main_image_url": null,
-        "user_name": userName,
-        "message": message,
-        "created_at": FieldValue.serverTimestamp(),
-        "updated_at": FieldValue.serverTimestamp(),
-      });
+      await firebaseFireStore.collection("users").doc(uid).set(
+            UserDocument(
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+              userName: userName,
+              message: message,
+              followCount: 0,
+              followerCount: 0,
+              messageCount: 0,
+              mainImageUrl: null,
+            ).toJson(),
+          );
       return const SetProfileResult.success();
     } on Exception catch (e) {
       return SetProfileResult.error(e);
